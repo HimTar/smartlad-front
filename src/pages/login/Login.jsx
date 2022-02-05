@@ -51,13 +51,13 @@ export default function Login() {
               )}
             </button>
             <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
+            <a href="/" className="loginRegisterButton">
               {isFetching ? (
                 <CircularProgress color="white" size="20px" />
               ) : (
                 "Create a New Account"
               )}
-            </button>
+            </a>
           </form>
         </div>
       </div>

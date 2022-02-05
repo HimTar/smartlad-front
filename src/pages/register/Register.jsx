@@ -71,7 +71,9 @@ export default function Register() {
             <button className="loginButton" type="submit">
               Sign Up
             </button>
-            <button className="loginRegisterButton">Log into Account</button>
+            <a href="/login" className="loginRegisterButton">
+              Log into Account
+            </a>
           </form>
         </div>
       </div>

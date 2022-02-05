@@ -24,7 +24,8 @@ export default function Rightbar({ user }) {
         console.log(err);
       }
     };
-    getFriends();
+
+    if (user && user._id) getFriends();
   }, [user]);
 
   const handleClick = async () => {
@@ -41,8 +42,7 @@ export default function Rightbar({ user }) {
         dispatch({ type: "FOLLOW", payload: user._id });
       }
       setFollowed(!followed);
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   const HomeRightbar = () => {
