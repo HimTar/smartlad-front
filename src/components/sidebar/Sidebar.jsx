@@ -19,8 +19,10 @@ export default function Sidebar() {
       <div className="sidebarWrapper">
         <ul className="sidebarList">
           <li className="sidebarListItem">
-            <RssFeed className="sidebarIcon" />
-            <span className="sidebarListItemText">Feed</span>
+            <a href="/" className="sidebarListItem">
+              <RssFeed className="sidebarIcon" />
+              <span className="sidebarListItemText">Feed</span>
+            </a>
           </li>
           {/* <li className="sidebarListItem">
             <Chat className="sidebarIcon" />

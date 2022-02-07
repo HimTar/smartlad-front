@@ -2,6 +2,9 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
+import Groups from "./pages/groups/Groups";
+import GroupChat from "./pages/groupChat/GroupChat";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,6 +13,8 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+
+import "./global.css";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -26,6 +31,10 @@ function App() {
         <Route path="/profile/:username">
           <Profile />
         </Route>
+
+        <Route exact path="/groups" component={Groups} />
+
+        <Route exact path="/groups/:name" component={GroupChat} />
       </Switch>
     </Router>
   );
