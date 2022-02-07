@@ -12,17 +12,17 @@ import {
 } from "@material-ui/icons";
 import { Users } from "../../dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";
-
+import { Link } from "react-router-dom";
 export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
         <ul className="sidebarList">
           <li className="sidebarListItem">
-            <a href="/" className="sidebarListItem">
+            <Link to="/">
               <RssFeed className="sidebarIcon" />
               <span className="sidebarListItemText">Feed</span>
-            </a>
+            </Link>
           </li>
           {/* <li className="sidebarListItem">
             <Chat className="sidebarIcon" />
@@ -33,8 +33,10 @@ export default function Sidebar() {
             <span className="sidebarListItemText">Videos</span>
           </li> */}
           <li className="sidebarListItem">
-            <Group className="sidebarIcon" />
-            <span className="sidebarListItemText">Groups</span>
+            <Link to="/groups">
+              <Group className="sidebarIcon" />
+              <span className="sidebarListItemText">Groups</span>
+            </Link>
           </li>
           {/* <li className="sidebarListItem">
             <Bookmark className="sidebarIcon" />
@@ -53,13 +55,15 @@ export default function Sidebar() {
             <span className="sidebarListItemText">Events</span>
           </li> */}
           <li className="sidebarListItem">
-            <School className="sidebarIcon" />
-            <span className="sidebarListItemText">Courses</span>
+            <Link to="/courses">
+              <School className="sidebarIcon" />
+              <span className="sidebarListItemText">Courses</span>
+            </Link>
           </li>
         </ul>
         {/* <button className="sidebarButton">Show More</button> */}
         {/* <hr className="sidebarHr" /> */}
-        <div style={{ marginTop: "175%" }}>
+        <div style={{ marginTop: "150%" }}>
           <h1
             style={{ color: "#1877f2", fontSize: "30px", letterSpacing: "2px" }}
           >

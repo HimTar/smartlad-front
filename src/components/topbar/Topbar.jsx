@@ -1,12 +1,22 @@
 import "./topbar.css";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useHistory, withRouter } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { Toolbar } from "@material-ui/core";
 
-export default function Topbar() {
+function Topbar() {
+  const history = useHistory();
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const signout = () => {
+    localStorage.clear();
+    setTimeout(() => {
+      history.go("/login");
+    }, 3000);
+  };
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -14,6 +24,7 @@ export default function Topbar() {
           <span className="logo">SmartLAD</span>
         </Link>
       </div>
+      <div className="topbarLeft2"></div>
       <div className="topbarCenter">
         <div className="searchbar">
           <Search className="searchIcon" />
@@ -42,7 +53,7 @@ export default function Topbar() {
             <Logout />
           </div> */}
         </div>
-        <Link to={`/profile/${user.username}`}>
+        <div className="dropdown">
           <img
             src={
               user.profilePicture
@@ -52,8 +63,24 @@ export default function Topbar() {
             alt=""
             className="topbarImg"
           />
-        </Link>
+          <ul className="dropdown-nav">
+            <li className="dropdown-item">
+              <Link to={`/profile/${user.username}`}>My Profile</Link>
+            </li>
+            <li className="dropdown-item">
+              <Link to="/">My Network</Link>
+            </li>
+            <li className="dropdown-item">
+              <Link to="/my-post">My Posts</Link>
+            </li>
+            <li className="dropdown-item">
+              <Link onClick={signout}>Sign out</Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
 }
+
+export default withRouter(Topbar);

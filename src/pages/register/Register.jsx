@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRef } from "react";
 import "./register.css";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const username = useRef();
@@ -33,9 +34,9 @@ export default function Register() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <h3 className="loginLogo">Lamasocial</h3>
+          <h3 className="loginLogo">SmartLAD</h3>
           <span className="loginDesc">
-            Connect with friends and the world around you on Lamasocial.
+            Connect with mentors all around the world with SmartLAD.
           </span>
         </div>
         <div className="loginRight">
@@ -71,9 +72,10 @@ export default function Register() {
             <button className="loginButton" type="submit">
               Sign Up
             </button>
-            <a href="/login" className="loginRegisterButton">
+
+            <Link to="/login" className="loginRegisterButton">
               Log into Account
-            </a>
+            </Link>
           </form>
         </div>
       </div>

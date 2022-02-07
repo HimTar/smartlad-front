@@ -4,6 +4,7 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import Groups from "./pages/groups/Groups";
 import GroupChat from "./pages/groupChat/GroupChat";
+import Courses from "./pages/courses/courses";
 
 import {
   BrowserRouter as Router,
@@ -11,6 +12,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
@@ -35,6 +37,7 @@ function App() {
         <Route exact path="/groups" component={Groups} />
 
         <Route exact path="/groups/:name" component={GroupChat} />
+        <Route exact path="/courses" component={Courses} />
       </Switch>
     </Router>
   );
