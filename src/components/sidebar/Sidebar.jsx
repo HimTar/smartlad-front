@@ -22,46 +22,53 @@ export default function Sidebar() {
             <RssFeed className="sidebarIcon" />
             <span className="sidebarListItemText">Feed</span>
           </li>
-          <li className="sidebarListItem">
+          {/* <li className="sidebarListItem">
             <Chat className="sidebarIcon" />
             <span className="sidebarListItemText">Chats</span>
-          </li>
-          <li className="sidebarListItem">
+          </li> */}
+          {/* <li className="sidebarListItem">
             <PlayCircleFilledOutlined className="sidebarIcon" />
             <span className="sidebarListItemText">Videos</span>
-          </li>
+          </li> */}
           <li className="sidebarListItem">
             <Group className="sidebarIcon" />
             <span className="sidebarListItemText">Groups</span>
           </li>
-          <li className="sidebarListItem">
+          {/* <li className="sidebarListItem">
             <Bookmark className="sidebarIcon" />
             <span className="sidebarListItemText">Bookmarks</span>
-          </li>
-          <li className="sidebarListItem">
+          </li> */}
+          {/* <li className="sidebarListItem">
             <HelpOutline className="sidebarIcon" />
             <span className="sidebarListItemText">Questions</span>
-          </li>
-          <li className="sidebarListItem">
+          </li> */}
+          {/* <li className="sidebarListItem">
             <WorkOutline className="sidebarIcon" />
             <span className="sidebarListItemText">Jobs</span>
-          </li>
-          <li className="sidebarListItem">
+          </li> */}
+          {/* <li className="sidebarListItem">
             <Event className="sidebarIcon" />
             <span className="sidebarListItemText">Events</span>
-          </li>
+          </li> */}
           <li className="sidebarListItem">
             <School className="sidebarIcon" />
             <span className="sidebarListItemText">Courses</span>
           </li>
         </ul>
-        <button className="sidebarButton">Show More</button>
-        <hr className="sidebarHr" />
-        <ul className="sidebarFriendList">
+        {/* <button className="sidebarButton">Show More</button> */}
+        {/* <hr className="sidebarHr" /> */}
+        <div style={{ marginTop: "175%" }}>
+          <h1
+            style={{ color: "#1877f2", fontSize: "30px", letterSpacing: "2px" }}
+          >
+            SmartLAD
+          </h1>
+        </div>
+        {/* <ul className="sidebarFriendList">
           {Users.map((u) => (
             <CloseFriend key={u.id} user={u} />
           ))}
-        </ul>
+        </ul> */}
       </div>
     </div>
   );

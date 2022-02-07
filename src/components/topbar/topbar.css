@@ -1,5 +1,5 @@
 .topbarContainer {
-  height: 50px;
+  height: 60px;
   width: 100%;
   background-color: #1877f2;
   display: flex;
@@ -14,11 +14,12 @@
 }
 
 .logo {
-  font-size: 24px;
-  margin-left: 20px;
+  font-size: 29px;
+  margin-left: 22px;
   font-weight: bold;
   color: white;
   cursor: pointer;
+  letter-spacing: 2px;
 }
 
 .topbarCenter {
@@ -41,7 +42,7 @@
 
 .searchInput {
   border: none;
-  width: 70%;
+  width: 30%;
 }
 
 .searchInput:focus {
