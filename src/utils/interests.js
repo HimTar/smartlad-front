@@ -1,0 +1,17 @@
+export default [
+  "engineering",
+  "medical",
+  "arts",
+  "music",
+  "dance",
+  "software development",
+  "cricket",
+  "hockey",
+  "sales",
+  "business",
+  "research",
+  "astronaut",
+  "psychology",
+  "fashion",
+  "enterprentureship",
+];

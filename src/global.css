@@ -16,6 +16,10 @@ a {
   margin-bottom: 1rem;
 }
 
+.subTitle {
+  color: #464646;
+}
+
 .cardsList {
   display: flex;
   flex-wrap: wrap;
@@ -127,4 +131,35 @@ a {
 .chatTime {
   margin-left: auto;
   margin-top: 0.5rem;
+}
+
+.userCardCont {
+  width: 25%;
+  margin: 1rem;
+  padding: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 10px 0 #dfdfdf;
+  border-radius: 5px;
+}
+
+.userCardOverlay {
+  display: flex;
+}
+
+.userCardImage {
+  display: block;
+  width: 56px !important;
+  height: 56px;
+  width: auto;
+  border-radius: 50%;
+}
+
+.userTags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.userCardTitle,
+.userCardDesc {
+  margin: 1rem;
 }

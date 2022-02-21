@@ -26,7 +26,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  margin: auto;
+  margin-left: 2rem;
   top: 150px;
   border: 3px solid white;
 }
@@ -49,4 +49,52 @@
 .profileRightBottom {
   display: flex;
   padding: 20px;
+  flex-direction: column;
+  margin-left: 2rem;
+}
+
+.profile .loginBox {
+  padding: 20px;
+  height: 600px !important;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.interestTab {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.interest-selected {
+  margin: 0.5rem;
+  background: #1775ee;
+  color: white;
+  border-radius: 0.2rem;
+  padding: 0 0.5rem;
+  cursor: pointer;
+}
+
+.interest {
+  margin: 0.5rem;
+  cursor: pointer;
+  color: #1775ee;
+  border-radius: 0.2rem;
+  border: 1px solid #1775ee;
+  padding: 0 0.5rem;
+}
+
+.button {
+  margin: 0.5rem;
+  cursor: pointer;
+  color: #1775ee;
+  border-radius: 0.4rem;
+  border: 2px solid #1775ee;
+  padding: 0.5rem 1rem;
+  width: max-content;
 }

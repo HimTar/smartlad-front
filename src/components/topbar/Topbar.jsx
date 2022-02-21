@@ -38,7 +38,7 @@ function Topbar() {
         </div> */}
         <div className="topbarIcons">
           <div className="topbarIconItem">
-            <Person />
+            {/* <Person /> */}
             {/* <span className="topbarIconBadge">1</span> */}
           </div>
           {/* <div className="topbarIconItem">
@@ -46,7 +46,7 @@ function Topbar() {
             <span className="topbarIconBadge">2</span> 
       </div> */}
           <div className="topbarIconItem">
-            <Notifications />
+            {/* <Notifications /> */}
             {/* <span className="topbarIconBadge">1</span> */}
           </div>
           {/* <div className="topbarIconItem">
@@ -54,21 +54,32 @@ function Topbar() {
           </div> */}
         </div>
         <div className="dropdown">
-          <img
-            src={
-              user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
-            }
-            alt=""
-            className="topbarImg"
-          />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
+          >
+            <img
+              src={
+                user.profilePicture
+                  ? user.profilePicture
+                  : "https://placehold.jp/24/cccccc/ffffff/100x100.png?text=" +
+                    user.username[0]
+              }
+              alt=""
+              className="topbarImg"
+            />
+
+            <p style={{ marginLeft: "0.5rem" }}>{user.username}</p>
+          </div>
           <ul className="dropdown-nav">
             <li className="dropdown-item">
               <Link to={`/profile/${user.username}`}>My Profile</Link>
             </li>
             <li className="dropdown-item">
-              <Link to="/">My Network</Link>
+              <Link to="/my-network">My Network</Link>
             </li>
             <li className="dropdown-item">
               <Link to="/my-post">My Posts</Link>
