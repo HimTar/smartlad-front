@@ -3,7 +3,7 @@ import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import { Link, useHistory, withRouter } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { Toolbar } from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 
 function Topbar() {
   const history = useHistory();
@@ -61,7 +61,7 @@ function Topbar() {
               cursor: "pointer",
             }}
           >
-            <img
+            <Avatar
               src={
                 user.profilePicture
                   ? user.profilePicture
@@ -69,7 +69,7 @@ function Topbar() {
                     user.username[0]
               }
               alt=""
-              className="topbarImg"
+              // className="topbarImg"
             />
 
             <p style={{ marginLeft: "0.5rem" }}>{user.username}</p>

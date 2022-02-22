@@ -1,9 +1,10 @@
 import "./profile.css";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 
 import interests from "../../utils/interests";
 
@@ -29,6 +30,10 @@ export default function Profile() {
   const [myInt, setMyInt] = useState([]);
   const [profile, setProfile] = useState("");
   const [cover, setCover] = useState("");
+  const [hide, setHide] = useState(true);
+  const [follow, setFollow] = useState(false);
+
+  const store = useContext(AuthContext);
 
   const { username } = useParams();
 
@@ -37,10 +42,25 @@ export default function Profile() {
       const res = await axios.get(`/auth/get-my-profile?username=${username}`);
       setUser(res.data.userData);
       setMyInt(res.data.userData.tags);
+
+      const isNotUser = store.user.username !== username;
+      if (isNotUser) checkFollow(res.data.userData);
+      else {
+        setHide(false);
+      }
     } catch {}
   };
 
+  const checkFollow = async (data) => {
+    const { followers } = data;
+    if (followers.includes(store.user._id)) {
+      setFollow(true);
+    } else setFollow(false);
+  };
+
   useEffect(() => {
+    if (!store.user || !store.user._id) window.location = "/login";
+
     fetchUser();
   }, [username]);
 
@@ -102,6 +122,18 @@ export default function Profile() {
     fetchUser();
   };
 
+  const handleFollow = async () => {
+    const myID = store.user._id;
+    const userId = user._id;
+
+    try {
+      if (follow) {
+        await axios.put(`/users/${myID}/unfollow`, { userId });
+      } else await axios.put(`/users/${myID}/follow`, { userId });
+      fetchUser();
+    } catch {}
+  };
+
   return (
     <>
       <Topbar />
@@ -160,42 +192,72 @@ export default function Profile() {
                 <option value="professional">Professional</option>
               </select>
 
-              <h1 className="profileTitle">My Interests</h1>
+              {hide ? (
+                <>
+                  <h1 className="profileTitle">User Interests</h1>
 
-              <div className="interestTab">
-                {interests.map((int) => {
-                  return (
-                    <p
-                      className={
-                        myInt.includes(int) ? "interest-selected" : "interest"
-                      }
-                      onClick={() => handleInterest(int)}
-                    >
-                      {int}
-                    </p>
-                  );
-                })}
-              </div>
+                  <div className="interestTab">
+                    {interests.map((int) => {
+                      return (
+                        <p
+                          className={
+                            myInt.includes(int)
+                              ? "interest-selected"
+                              : "interest"
+                          }
+                        >
+                          {int}
+                        </p>
+                      );
+                    })}
+                  </div>
 
-              <UploadControl
-                name="profile"
-                onChange={handleProfile}
-                accept="image/*"
-              >
-                Change Profile Image
-              </UploadControl>
+                  <button className="button" onClick={handleFollow}>
+                    {follow ? "Unfollow" : "Follow"}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <h1 className="profileTitle">My Interests</h1>
 
-              <UploadControl
-                name="cover"
-                onChange={handleCover}
-                accept="image/*"
-              >
-                Change Cover Image
-              </UploadControl>
+                  <div className="interestTab">
+                    {interests.map((int) => {
+                      return (
+                        <p
+                          className={
+                            myInt.includes(int)
+                              ? "interest-selected"
+                              : "interest"
+                          }
+                          onClick={() => handleInterest(int)}
+                        >
+                          {int}
+                        </p>
+                      );
+                    })}
+                  </div>
 
-              <button className="loginButton" type="submit">
-                Update Profile
-              </button>
+                  <UploadControl
+                    name="profile"
+                    onChange={handleProfile}
+                    accept="image/*"
+                  >
+                    Change Profile Image
+                  </UploadControl>
+
+                  <UploadControl
+                    name="cover"
+                    onChange={handleCover}
+                    accept="image/*"
+                  >
+                    Change Cover Image
+                  </UploadControl>
+
+                  <button className="loginButton" type="submit">
+                    Update Profile
+                  </button>
+                </>
+              )}
             </form>
           </div>
         </div>

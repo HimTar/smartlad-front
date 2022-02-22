@@ -40,9 +40,12 @@ function App() {
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}
         </Route>
-        <Route path="/profile/:username">
-          <Profile />
-        </Route>
+        <ProtectedRoute
+          exact
+          auth={user}
+          path="/profile/:username"
+          component={Profile}
+        />
 
         <ProtectedRoute exact auth={user} path="/groups" component={Groups} />
 

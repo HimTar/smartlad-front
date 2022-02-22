@@ -1,4 +1,5 @@
 import { useEffect, useContext, useState } from "react";
+import { Avatar } from "@material-ui/core";
 import axios from "axios";
 
 import { AuthContext } from "../../context/AuthContext";
@@ -7,10 +8,17 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 
 const Cards = ({ data }) => {
+  function capitalize(s) {
+    return s[0].toUpperCase() + s.slice(1);
+  }
+
   return (
     <div className="userCardCont">
-      <div className="userCardOverlay">
-        <img
+      <div
+        className="userCardOverlay"
+        onClick={() => (window.location = `/profile/${data.username}`)}
+      >
+        <Avatar
           src={
             data.profilePicture
               ? data.profilePicture
@@ -18,12 +26,12 @@ const Cards = ({ data }) => {
                 data.username[0]
           }
           alt={data.username}
-          className="userCardImage"
+          // className="userCardImage"
         />
-        <h2 className="userCardTitle">{data.username}</h2>
+        <h2 className="userCardTitle">{capitalize(data.username)}</h2>
       </div>
       <p className="userCardDesc">
-        {data.username} is a {data.role}
+        {capitalize(data.username)} is a {data.role}
       </p>
 
       <div className="userTags">
@@ -38,6 +46,7 @@ const Cards = ({ data }) => {
 const Network = () => {
   const [follower, setFoll] = useState([]);
   const [following, setFolli] = useState([]);
+  const [suggestion, setSuggestion] = useState([]);
 
   const { user } = useContext(AuthContext);
 
@@ -47,6 +56,7 @@ const Network = () => {
 
       setFoll(data.followers);
       setFolli(data.following);
+      setSuggestion(data.suggestion.reverse());
     };
 
     fetchData();
@@ -56,6 +66,13 @@ const Network = () => {
     <div className="groupCont">
       <div className="cont">
         <h1 className="title">My Network</h1>
+
+        <h3 className="subTitle">Connect with new people</h3>
+        <div className="cardsList">
+          {suggestion.map((foll, ind) => (
+            <Cards data={foll} key={ind} />
+          ))}
+        </div>
 
         <h3 className="subTitle">My Connections</h3>
         <div className="cardsList">

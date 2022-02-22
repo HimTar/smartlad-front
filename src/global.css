@@ -144,6 +144,7 @@ a {
 
 .userCardOverlay {
   display: flex;
+  cursor: pointer;
 }
 
 .userCardImage {
