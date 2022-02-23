@@ -24,10 +24,12 @@ export default function Sidebar() {
               <span className="sidebarListItemText">Feed</span>
             </Link>
           </li>
-          {/* <li className="sidebarListItem">
-            <Chat className="sidebarIcon" />
-            <span className="sidebarListItemText">Chats</span>
-          </li> */}
+          <li className="sidebarListItem">
+            <Link to="/chats">
+              <Chat className="sidebarIcon" />
+              <span className="sidebarListItemText">Chats</span>
+            </Link>
+          </li>
           {/* <li className="sidebarListItem">
             <PlayCircleFilledOutlined className="sidebarIcon" />
             <span className="sidebarListItemText">Videos</span>

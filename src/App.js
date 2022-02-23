@@ -7,6 +7,7 @@ import Network from "./pages/network/Network";
 import GroupChat from "./pages/groupChat/GroupChat";
 import Courses from "./pages/courses/courses";
 import PrivateChat from "./pages/privateChat/PrivateChat";
+import Chats from "./pages/Chats";
 
 import {
   BrowserRouter as Router,
@@ -70,6 +71,8 @@ function App() {
           path="/private/:receiverID/:name"
           component={PrivateChat}
         />
+
+        <ProtectedRoute exact auth={user} path="/chats" component={Chats} />
 
         <Route exact path="/courses" component={Courses} />
 
