@@ -88,16 +88,10 @@ const ChatMessage = ({ chat }) => {
   return (
     <div
       className={`singleChatCont ${
-        chat.username === user.username ? "right" : "left"
+        chat.sender === user._id ? "right" : "left"
       }`}
     >
-      <a
-        href={`/profile/${chat.username}`}
-        className="chatUser"
-        title={`View ${chat.username}'s profile`}
-      >
-        {chat.username}
-      </a>
+      <p className="chatUser">{chat.username}</p>
       <p className="chatText">{chat.text}</p>
       <p className="chatTime">{formatDate(chat.time)}</p>
     </div>
@@ -105,27 +99,36 @@ const ChatMessage = ({ chat }) => {
 };
 
 const Chats = ({ chats }) => {
+  const { name } = useParams();
+
   return (
-    <div className="chatCont">
-      {!chats.length && <p className="defaultText">No chats yet ..</p>}
-      {chats.map((chat, ind) => {
-        return <ChatMessage chat={chat} key={ind} />;
-      })}
-    </div>
+    <>
+      <p style={{ position: "absolute", fontWeight: "bold" }}>
+        You are chatting with {name}
+      </p>
+      <div className="chatCont">
+        {!chats.length && <p className="defaultText">No chats yet ..</p>}
+        {chats.map((chat, ind) => {
+          return <ChatMessage chat={chat} key={ind} />;
+        })}
+      </div>
+    </>
   );
 };
 
-const Groups = () => {
+const PrivateChat = () => {
   const [chats, setChats] = useState([]);
   const [message, setMessage] = useState({ text: "", img: "" });
   const { user } = useContext(AuthContext);
-  const { name } = useParams();
+  const { receiverID } = useParams();
 
   const refreshChats = async () => {
     try {
-      const { data } = await axios.get(`/chats/get-all-chats?group=${name}`);
+      const { data } = await axios.get(`/chats/private`, {
+        params: { user1: receiverID, user2: user._id },
+      });
 
-      setChats(data.reverse());
+      setChats(data.chats.reverse());
     } catch (err) {
       console.log(err);
     }
@@ -149,12 +152,12 @@ const Groups = () => {
 
       const data = {
         ...message,
-        group: name,
         time: new Date().toISOString(),
-        username: user.username,
+        sender: user._id,
+        receiver: receiverID,
       };
 
-      await axios.post("/chats/", data);
+      await axios.post("/chats/private", data);
 
       setMessage({ text: "", img: "" });
       refreshChats();
@@ -194,7 +197,7 @@ export default function MainCont() {
       <div className="homeContainer">
         <Sidebar />
 
-        <Groups />
+        <PrivateChat />
       </div>
     </>
   );

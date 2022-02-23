@@ -6,6 +6,7 @@ import Groups from "./pages/groups/Groups";
 import Network from "./pages/network/Network";
 import GroupChat from "./pages/groupChat/GroupChat";
 import Courses from "./pages/courses/courses";
+import PrivateChat from "./pages/privateChat/PrivateChat";
 
 import {
   BrowserRouter as Router,
@@ -63,7 +64,16 @@ function App() {
           component={GroupChat}
         />
 
+        <ProtectedRoute
+          exact
+          auth={user}
+          path="/private/:receiverID/:name"
+          component={PrivateChat}
+        />
+
         <Route exact path="/courses" component={Courses} />
+
+        <Route path="/" component={() => <h1>404! Page Does Not Exists </h1>} />
       </Switch>
     </Router>
   );

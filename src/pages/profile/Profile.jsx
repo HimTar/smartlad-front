@@ -60,7 +60,8 @@ export default function Profile() {
 
   useEffect(() => {
     if (!store.user || !store.user._id) window.location = "/login";
-
+    setFollow(false);
+    setHide(true);
     fetchUser();
   }, [username]);
 
@@ -212,9 +213,19 @@ export default function Profile() {
                     })}
                   </div>
 
-                  <button className="button" onClick={handleFollow}>
-                    {follow ? "Unfollow" : "Follow"}
-                  </button>
+                  <div>
+                    <button className="button" onClick={handleFollow}>
+                      {follow ? "Unfollow" : "Follow"}
+                    </button>
+                    {follow && (
+                      <a
+                        className="button"
+                        href={`/private/${user._id}/${user.username}`}
+                      >
+                        Start Chatting
+                      </a>
+                    )}
+                  </div>
                 </>
               ) : (
                 <>

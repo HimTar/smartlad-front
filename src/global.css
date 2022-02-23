@@ -57,9 +57,9 @@ a {
 
 .chatCont {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   background-color: beige;
-  height: 40.5rem;
+  height: 40rem;
   overflow: auto;
 }
 
