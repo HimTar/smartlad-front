@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./utils/axios";
 
 export const loginCall = async (userCredential, dispatch) => {
   dispatch({ type: "LOGIN_START" });
@@ -9,4 +9,3 @@ export const loginCall = async (userCredential, dispatch) => {
     dispatch({ type: "LOGIN_FAILURE", payload: err });
   }
 };
-

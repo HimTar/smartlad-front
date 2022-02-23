@@ -2,7 +2,7 @@ import "./profile.css";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { useEffect, useState, useContext } from "react";
-import axios from "axios";
+import axios from "../../utils/axios";
 import { useParams } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 

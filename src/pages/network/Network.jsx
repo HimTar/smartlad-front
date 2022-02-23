@@ -1,7 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { Avatar } from "@material-ui/core";
-import axios from "axios";
-
+import axios from "../../utils/axios";
 import { AuthContext } from "../../context/AuthContext";
 
 import Topbar from "../../components/topbar/Topbar";
