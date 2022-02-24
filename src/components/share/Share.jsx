@@ -6,6 +6,7 @@ import {
   EmojiEmotions,
   Cancel,
 } from "@material-ui/icons";
+import { Avatar } from "@material-ui/core";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "../../utils/axios";
@@ -16,24 +17,26 @@ export default function Share() {
   const desc = useRef();
   const [file, setFile] = useState(null);
 
+  const uploadImage = async (img) => {
+    const formData = new FormData();
+    formData.append("file", img);
+
+    const { data } = await axios.post("/upload", formData);
+
+    return data.body.link;
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
+      img: "",
     };
-    if (file) {
-      const data = new FormData();
-      const fileName = Date.now() + file.name;
-      data.append("name", fileName);
-      data.append("file", file);
-      newPost.img = fileName;
-      console.log(newPost);
-      try {
-        await axios.post("/upload", data);
-      } catch (err) {}
-    }
+
     try {
+      if (file) newPost.img = await uploadImage(file);
+
       await axios.post("/posts", newPost);
       window.location.reload();
     } catch (err) {}
@@ -43,16 +46,17 @@ export default function Share() {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img
-            className="shareProfileImg"
+          <Avatar
             src={
               user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
+                ? user.profilePicture
+                : "https://placehold.jp/24/cccccc/ffffff/100x100.png?text=" +
+                  user.username[0]
             }
-            alt=""
+            alt={user.username}
+            // className="userCardImage"
           />
-          <input
+          <textarea
             placeholder={"What's in your mind " + user.username + "?"}
             className="shareInput"
             ref={desc}

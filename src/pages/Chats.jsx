@@ -122,11 +122,27 @@ const ChatList = () => {
 
   return (
     <div className="groupCont">
+      <h1 style={{ margin: "1rem" }}>Personal chats</h1>
+
       <div className="cont" style={{ display: "flex" }}>
         {list.map((item) => (
           <Cards data={item} key={item._id} />
         ))}
       </div>
+
+      {list.length === 0 && (
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            height: "5rem",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          No chats yet ..
+        </div>
+      )}
     </div>
   );
 };
