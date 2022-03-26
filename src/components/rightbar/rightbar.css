@@ -100,3 +100,23 @@
 .rightbarFollowButton:focus {
   outline: none;
 }
+
+/* My Code */
+
+.Rtcontainer {
+  margin: 30px 0;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.RtText {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+.RtImg {
+  width: 100%;
+  border-radius: 10px;
+}
