@@ -171,7 +171,6 @@ const PrivateChat = () => {
       <Chats chats={chats} />
       <div className="messageCont">
         <div className="innMess">
-          <GalleryIcon />
           <textarea
             type="text"
             value={message.text}

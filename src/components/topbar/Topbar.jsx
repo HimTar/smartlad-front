@@ -25,12 +25,7 @@ function Topbar() {
         </Link>
       </div>
       <div className="topbarLeft2"></div>
-      <div className="topbarCenter">
-        <div className="searchbar">
-          <Search className="searchIcon" />
-          <input placeholder="Search " className="searchInput" />
-        </div>
-      </div>
+      <div className="topbarCenter"></div>
       <div className="topbarRight">
         {/* <div className="topbarLinks">
           <span className="topbarLink">Homepage</span>
@@ -80,9 +75,6 @@ function Topbar() {
             </li>
             <li className="dropdown-item">
               <Link to="/my-network">My Network</Link>
-            </li>
-            <li className="dropdown-item">
-              <Link to="/my-post">My Posts</Link>
             </li>
             <li className="dropdown-item">
               <Link onClick={signout}>Sign out</Link>
