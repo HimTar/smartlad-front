@@ -25,8 +25,10 @@ export default function Register() {
       };
       try {
         await axios.post("/auth/register", user);
+        alert("Register success. Please login");
         history.push("/login");
       } catch (err) {
+        alert("User credentials are wrong!");
         console.log(err);
       }
     }
