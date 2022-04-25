@@ -124,7 +124,7 @@ const ChatList = () => {
     <div className="groupCont">
       <h1 style={{ margin: "1rem" }}>Personal chats</h1>
 
-      <div className="cont" style={{ display: "flex" }}>
+      <div className="cont" style={{ display: "flex", flexWrap: "wrap" }}>
         {list.map((item) => (
           <Cards data={item} key={item._id} />
         ))}
